@@ -1,13 +1,9 @@
 <!-- Вызов процедуры
 
 declare
-
   l_Obj dwh.TPSRRule:= dwh.TPSRRule( 322763 );  -- ид блока
-
 begin
-
   :PResult:= l_Obj.InsertRow(p_ColumnValues => :PColumnValues);
-
 end;  
 
 -->
