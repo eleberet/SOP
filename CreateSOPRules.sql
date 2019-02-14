@@ -16,8 +16,8 @@ begin
     select id_object into l_idobj from srp_obj
   where upper(code) like Upper('SOPAutotestDataset');
 
-      l_Id :=  l_SysPSR.AddGroupRules(p_Code            => 'SOPAutotestBlock',
-                                      p_Name            => 'SOPAutotestBlock',
+      l_Id :=  l_SysPSR.AddGroupRules(p_Code            => 'SOPAutotestGroupBlock',
+                                      p_Name            => 'SOPAutotestGroupBlock',
                                       p_Note            => 'Группа блоков правил на основе ХЗ SOPAutotestDataset',
                                       p_DataSetId       => l_idobj,
                                       p_DtParam => 'P_DT');
@@ -31,10 +31,13 @@ begin
                                     p_DefaultValue => 0, -- id 'Default' rule
                                     p_DimRole => 'RuleBlock1');
      -- Добавление правила в блок
+	  --> OPER - оператор
+	  --> VAL - значение колонки
+	  --> STATUS - 1 вкл, 0 откл
 
           l_Block := dwh.TpsrBlockRules(l_Id);                           
           l_Id := l_Block.AddExceptionRule (p_RULETHEN => 1,
-                                            p_CASEEXTENDED => '<ROWS><ROW COL="account_number" OPER="4" VAL="3" STATUS="1"></ROW></ROWS>'
+                                            p_CASEEXTENDED => '<ROWS><ROW COL="account_number" OPER="4" VAL="3" STATUS="0"></ROW></ROWS>'
                                            );
           l_Id := l_Block.AddExceptionRule (p_RULETHEN     => 2,
                                             p_CASEEXTENDED => '<ROWS><ROW COL="balance_code" OPER="2" VAL="4" STATUS="1"></ROW></ROWS>'

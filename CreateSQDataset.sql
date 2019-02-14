@@ -1,4 +1,5 @@
-declare l_SysMD dwh.TSRPSysMD := dwh.TSRPSysMD('SysMD');
+declare 
+l_SysMD dwh.TSRPSysMD := dwh.TSRPSysMD('SysMD');
 l_SQLQuery dwh.TBCLSQLQuery := dwh.TBCLSQLQuery(-1);
 l_id dwh.ud.Id;
 begin
